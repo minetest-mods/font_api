@@ -59,7 +59,7 @@ local function get_next_char(text, pos)
 	end
 
 	-- 2 bytes char (little endian)
-	if msb >= 0xC2 then
+	if msb >= 0xC2 and text:byte(pos + 1) ~= nil then
 		return (msb - 0xC2) * 0x40 + text:byte(pos + 1),
 		       pos + 2
 	end
